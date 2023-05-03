@@ -94,3 +94,21 @@ ul {
     background-color: #ffffff;
     color: #727272;
 }
+
+li.concluida .cartao-cabecalho {
+    background-color: #b8ff99;
+    color: #2b5a07;
+}
+
+li.concluida .check {
+    background-image: url("../assets/checked.png");
+}
+
+li.concluida .cartao-rodape {
+    background-image: url("../assets/archive-color.png");
+    cursor: pointer;
+}
+
+li.concluida .cartao-corpo {
+    text-decoration: line-through;
+}
