@@ -1,6 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Open+Sans:wght@600&family=Roboto:wght@400;500&display=swap');
+
+/*
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+*/
+
+body {
+    margin: 10px 30px;
+}
+
 ul {
     list-style: none;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .cartao {
@@ -44,4 +58,39 @@ ul {
     position: absolute;
     bottom: 5px;
     right: 5px;
+}
+
+.azul {
+    background-color: #daf5fa;
+    color: #19b5dc;
+}
+
+.verde {
+    background-color: #d1fecb;
+    color: #58a51d;
+}
+
+.rosa {
+    background-color: #f6d0f6;
+    color: #cb65cb;
+}
+
+.roxo {
+    background-color: #dcd0f3;
+    color: #9763f9;
+}
+
+.amarelo {
+    background-color: #fcfccb;
+    color: #8f8f69;
+}
+
+.laranja {
+    background-color: #fbd4b4;
+    color: #ec842e;
+}
+
+.branco {
+    background-color: #ffffff;
+    color: #727272;
 }
