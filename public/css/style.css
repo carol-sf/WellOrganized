@@ -112,3 +112,11 @@ li.concluida .cartao-rodape {
 li.concluida .cartao-corpo {
     text-decoration: line-through;
 }
+
+li.arquivada .cartao-rodape {
+    background-image: url("../assets/trash-color.png");
+}
+
+li.arquivada .check {
+    cursor: default;
+}
