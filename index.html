@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <title>Well Organized</title>
-    <meta charset="UTF-8">        
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./public/assets/favicon.ico">    
+    <link rel="icon" href="./public/assets/favicon.ico">
     <link rel="stylesheet" href="./public/css/style.css">
 </head>
+
 <body>
     <header>
         <!-- menu e logo -->
@@ -16,9 +18,36 @@
             <!-- botao de adicionar e formulario -->
         </section>
         <section id="tarefas">
-            <!-- cartões de tarefa -->
+            <ul id="listaFazer">
+                <li class="cartao">
+                    <div class="cartao-cabecalho">
+                        <div class="check"></div>
+                        <span>Não concluída</span> <!-- depende se o checkbox está marcado ou não -->
+                    </div>
+                    <div class="cartao-corpo">
+                        <p>Estudar HTML, CSS e JavaScript</p> <!-- o que escrever no input -->
+                    </div>
+                    <div class="cartao-rodape">
+                        <div class="remover"></div> <!-- arquivar habilitado ou desabilitado -->
+                    </div>
+                </li>
+
+                <li class="cartao">
+                    <div class="cartao-cabecalho">
+                        <div class="check"></div>
+                        <span>Não concluída</span>
+                    </div>
+                    <div class="cartao-corpo">
+                        <p>Estudar HTML, CSS e JavaScript</p>
+                    </div>
+                    <div class="cartao-rodape">
+                        <div class="remover"></div>
+                    </div>
+                </li>
+            </ul>
         </section>
     </main>
     <script src="./public/js/script.js"></script>
 </body>
+
 </html>
