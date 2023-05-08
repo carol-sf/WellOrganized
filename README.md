@@ -16,3 +16,11 @@ Cartões
 - [x] arquivada
 
   
+### Funções no JS
+- [ ] exibirFormulario          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> evento: clicar no botão de mais
+- [ ] selecionarCor             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> evento: clicar no botão da cor
+- [ ] adicionarItem             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> evento: clicar no botão adicionar do formulário
+- [ ] validar                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> chamado no "adicionarItem"
+- [ ] itemJaExiste              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> chamado no "validar"
+- [ ] criarItem                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> chamado no "adicionarItem"
+- [ ] limparInpDescricao        &nbsp; &nbsp; -> chamado no "adicionarItem"
