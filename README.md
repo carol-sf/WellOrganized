@@ -1,5 +1,6 @@
 # Well Organized - A fazer:
 
+##Fazendo modificações Anna Logada
 ## Criar a interface
 - [x] páginas: index e arquivadas
 - [ ] header           -> logo e menu
@@ -10,7 +11,7 @@
 - [x] cores
 - [x] concluida
 - [x] arquivada
-foiiiii
+
   
 ## Funções no JS
 ### Preparação para adição de tarefas
