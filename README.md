@@ -1,6 +1,5 @@
 # Well Organized - A fazer:
 
-##Fazendo modificações Anna Logada
 ## Criar a interface
 - [x] páginas: index e arquivadas
 - [ ] header           -> logo e menu
