@@ -10,7 +10,7 @@
 - [x] cores
 - [x] concluida
 - [x] arquivada
-
+foiiiii
   
 ## Funções no JS
 ### Preparação para adição de tarefas
