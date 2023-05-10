@@ -121,3 +121,14 @@ li.arquivada .cartao-rodape {
 li.arquivada .check {
     cursor: default;
 }
+.subtituloPagina{
+    height: 55px;
+    display: flex;
+    align-items: center;
+}
+.subtituloPagina p{
+    padding: 16px 50px 0 28px;
+    font-family: 'Montserrat', sans-serif;
+    font-size:24px;
+    font-weight: 400;
+}
