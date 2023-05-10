@@ -2,7 +2,7 @@ document.getElementById("alterarStatusDiv").addEventListener("click", adicionand
 const adicaoTarefas = document.getElementById("adicaoTarefas");
 const btnAddTarefa = document.getElementById("botao-add-tarefa");
 
-function adicionandoTarefas() {
+function adicionandoTarefas(evt) {
     btnAddTarefa.classList.toggle("esconde");
     adicaoTarefas.classList.toggle("hide");
 }
