@@ -13,6 +13,10 @@ let entrada = $("#entrada").get(0);
 let corSelecionada = "azul"; // fazer "selecionarCor()"
 $("#btn-add").on("click", adicionarTarefa);
 
+function selecionarCor() {
+    
+}
+
 function validar() {
     // fazer validações do vídeo
     return true;

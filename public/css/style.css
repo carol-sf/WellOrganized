@@ -130,7 +130,7 @@ main .btn-a-fazer img {
 }
 
 .adicaoTarefas button {
-    border: 1px solid;
+    border: 1px solid black;
     margin-left: 15px;
     height: 20px;
     width: 20px;
@@ -138,7 +138,7 @@ main .btn-a-fazer img {
 }
 
 
-.adicaoTarefas button.azulAdd {
+/* .adicaoTarefas button.azulAdd {
     background-color: #daf5fa;
 }
 
@@ -164,7 +164,7 @@ main .btn-a-fazer img {
 
 .adicaoTarefas button.brancoAdd {
     background-color: #ffffff;
-}
+} */
 
  ul {
     list-style: none;
