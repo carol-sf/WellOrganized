@@ -135,7 +135,7 @@ main .btn-a-fazer img {
     margin-left: 15px;
     height: 20px;
     width: 20px;
-    /* box-shadow: 0 1px 0 gray; */
+    box-shadow: 0 1px 0 gray;
 }
 
 

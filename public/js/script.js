@@ -10,11 +10,12 @@ function adicionandoTarefas(evt) {
 // Criando as tarefas (usando o jQuery)
 
 let entrada = $("#entrada").get(0);
-let corSelecionada = "azul"; // fazer "selecionarCor()"
+let corSelecionada = "";
+$(".btnCor").on("click", selecionarCor);
 $("#btn-add").on("click", adicionarTarefa);
 
-function selecionarCor() {
-    
+function selecionarCor(evt) {
+    corSelecionada = evt.target.id;
 }
 
 function validar() {
@@ -51,7 +52,6 @@ function adicionarTarefa() {
 
         // armazenar tarefa no local storage
 
-        alert(entrada.value);
         criarTarefa(tarefa).appendTo($("#listaFazer"));
 
         // limpar formulário
