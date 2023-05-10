@@ -26,7 +26,7 @@ header {
 nav {
     display: flex;
     width: 100%;
-    padding: 33px 50px 0 28px;
+    padding: 45px 50px 0 45px; 
 
 }
 
@@ -34,7 +34,7 @@ nav ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
-    padding: 10px 0;
+    padding: 10px 30px;
     margin-left: 121px;
 }
 
@@ -60,7 +60,7 @@ main .botao-add-tarefa {
 }
 
 main .botao-add-tarefa .btn-a-fazer {
-    padding: 25px 50px 0 28px;
+    padding: 30px 50px 30px 45px;  
     position: absolute;
     background-color: inherit;
     border: none;
@@ -282,8 +282,9 @@ li.arquivada .check {
     align-items: center;
 }
 .subtituloPagina p{
-    padding: 16px 50px 0 28px;
+    padding: 45px 50px 25px 46px;
     font-family: 'Montserrat', sans-serif;
     font-size:24px;
     font-weight: 400;
+  
 }
