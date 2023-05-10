@@ -104,6 +104,7 @@ main .btn-a-fazer img {
     margin-left: 5px;
 }
 
+
 .adicaoTarefas input {
     width: 490px;
     height: 40px;
@@ -171,6 +172,7 @@ main .btn-a-fazer img {
     /* margin-top: 40px; */
     padding: 45px 50px 30px 45px; 
 }
+
  ul {
     list-style: none;
     padding: 0;
@@ -287,9 +289,10 @@ li.arquivada .check {
     align-items: center;
 }
 .subtituloPagina p{
-    padding: 45px 50px 25px 46px;
+    padding: 45px 50px 30px 46px;
     font-family: 'Montserrat', sans-serif;
     font-size:24px;
     font-weight: 400;
-  
+    margin-top:20px;
+   
 }
