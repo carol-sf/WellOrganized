@@ -12,10 +12,15 @@ function adicionandoTarefas(evt) {
 let entrada = $("#entrada").get(0);
 let corSelecionada = "";
 $(".btnCor").on("click", selecionarCor);
-$("#btn-add").on("click", adicionarTarefa);
+$("#btn-add").click(adicionarTarefa);
 
 function selecionarCor(evt) {
-    corSelecionada = evt.target.id;
+    let btnCorAnterior = $(".cor-selecionada");
+    $(evt.target).addClass("cor-selecionada");
+    btnCorAnterior.removeClass("cor-selecionada");
+
+    if ($(".cor-selecionada").length === 0) corSelecionada = "";
+    else corSelecionada = evt.target.id;
 }
 
 function validar() {
@@ -48,6 +53,7 @@ function criarTarefa(tarefa) {
 
 function adicionarTarefa() {
     if(validar()) {
+        console.log(entrada);
         let tarefa = { desc: entrada.value, cor: corSelecionada, concluida: false, arquivada: false }
 
         // armazenar tarefa no local storage
