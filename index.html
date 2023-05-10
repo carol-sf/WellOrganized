@@ -7,15 +7,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./public/assets/favicon.ico">
     <link rel="stylesheet" href="./public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./public/css/home.css" />
 </head>
 
 <body>
+    <!-- Fazendo o cabeçalho do site -->
     <header>
-        <!-- menu e logo -->
+        <nav>
+            <div class="nome">
+                <h1>Well Organized</h1>
+            </div>
+            <div class="links">
+                <ul>
+                    <li><a href="./index.html">A fazer</a></li>
+                    <hr>
+                    <li><a href="./Arquivadas.html">Arquivadas</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
+    <!-- Fazendo o main -->
     <main>
         <section id="cabecalho">
-            <!-- botao de adicionar e formulario -->
+            <!-- div do botão adicionar -->
+            <div id="botao-add-tarefa" class="botao-add-tarefa">
+                <button class="btn-a-fazer" id="alterarStatusDiv">
+                    <img src="./public/assets/task-add-icon.png" alt="Imagem de adicionar tarefa"
+                        title="Adicionar Tarefa">
+                    <p>Adicionar Tarefa</p>
+                </button>
+            </div>
+            <!-- Fim da div do botão adicionar -->
+            <!-- inicio da div de add cartao -->
+            <div id="adicaoTarefas" class="adicaoTarefas">
+                <label for="text">Descrição</label>
+                <input type="text" id="entrada" required="">
+                <label for="text">Cor</label>
+                <button class="azul" id="btn-azul"></button>
+                <button class="verde" id="btn-verde"></button>
+                <button class="rosa" id="btn-rosa"></button>
+                <button class="roxo" id="btn-roxo"></button>
+                <button class="amarelo" id="btn-amarelo"></button>
+                <button class="laranja" id="btn-laranja"></button>
+                <button class="branco" id="btn-branco"></button>
+                <button id="btn-add" class="btn-add">Adicionar</button>
+
+            </div>
+            <div>
+            </div>
+
         </section>
         <section id="tarefas">
             <ul id="listaFazer">
@@ -27,7 +67,8 @@
                     <div class="cartao-corpo">
                         <p>Estudar HTML, CSS e JavaScript</p> <!-- o que estiver escrito no input -->
                     </div>
-                    <div class="cartao-rodape"></div> <!-- arquivar habilitado ou desabilitado, se estiver concluido ou nao -->
+                    <div class="cartao-rodape"></div>
+                    <!-- arquivar habilitado ou desabilitado, se estiver concluido ou nao -->
                 </li>
 
                 <li class="cartao verde concluida"> <!-- se o check estiver selecionado vai ter a classe "concluida" -->
@@ -99,6 +140,7 @@
         </section>
     </main>
     <script src="./public/js/script.js"></script>
+
 </body>
 
 </html>
