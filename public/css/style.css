@@ -6,12 +6,167 @@
     font-family: 'Roboto', sans-serif;
 */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     margin: 10px 30px;
 }
 
-ul {
+header {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    height: 100px;
+    font-size: 24px;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    padding: 33px 50px 0 28px;
+
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 10px 0;
+    margin-left: 121px;
+}
+
+nav ul li {
+    margin: 0 20px;
+
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+main {
+    height: 100px;
+}
+
+
+main .botao-add-tarefa {
+    height: 100px;
+    display: block;
+    align-items: center;
+}
+
+main .botao-add-tarefa .btn-a-fazer {
+    padding: 25px 50px 0 28px;
+    position: absolute;
+    background-color: inherit;
+    border: none;
+    appearance: none;
+    cursor: pointer;
+    display: flex;
+}
+
+main .botao-add-tarefa .btn-a-fazer p {
+    color: #2196f3;
+    font-size: 24px;
+    padding: 12px 0px 0px 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+main .btn-a-fazer img {
+    height: 50px;
+    width: 50px;
+}
+
+.esconde {
+    visibility: hidden;
+    display: block;
+}
+
+.adicaoTarefas {
+    height: 100px;
+    padding: 5px 50px 0 28px;
+    align-items: center;
+    display: none;
+    margin-top: -75px;
+}
+
+.adicaoTarefas label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #000000;
+    margin-right: 17px;
+    margin-left: 5px;
+}
+
+.adicaoTarefas input {
+    width: 490px;
+    height: 40px;
+    border-color: #50b6cf;
+    border-radius: 7px;
+    margin-right: 15px;
+}
+
+.hide {
+    display: block;
+    display: flex;
+}
+
+.adicaoTarefas .btn-add {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    color: #ffffff;
+    width: 145px;
+    height: 40px;
+    background-color: #50b6cf;
+    border-radius: 12px;
+    border: none;
+}
+
+.adicaoTarefas button {
+    border: 1px solid;
+    margin-left: 15px;
+    height: 20px;
+    width: 20px;
+    box-shadow: 0 1px 0 gray;
+}
+
+
+.adicaoTarefas button.azulAdd {
+    background-color: #daf5fa;
+}
+
+.adicaoTarefas button.verdeAdd {
+    background-color: #d1fecb;
+}
+
+.adicaoTarefas button.rosaAdd {
+    background-color: #f6d0f6;
+}
+
+.adicaoTarefas button.roxoAdd {
+    background-color: #dcd0f3;
+}
+
+.adicaoTarefas button.amareloAdd {
+    background-color: #fcfccb;
+}
+
+.adicaoTarefas button.laranjaAdd {
+    background-color: #fbd4b4;
+}
+
+.adicaoTarefas button.brancoAdd {
+    background-color: #ffffff;
+}
+
+ ul {
     list-style: none;
     padding: 0;
     display: flex;
