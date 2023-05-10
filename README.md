@@ -2,8 +2,8 @@
 
 ## Criar a interface
 - [x] páginas: index e arquivadas
-- [ ] header           -> logo e menu
-- [ ] seção cabeçalho  -> botao adicionar ou formulário (index), título (arquivadas)
+- [x] header           -> logo e menu
+- [x] seção cabeçalho  -> botao adicionar ou formulário (index), título (arquivadas)
 - [x] seção tarefas    -> cartões de tarefas
 
 ### Cartões
