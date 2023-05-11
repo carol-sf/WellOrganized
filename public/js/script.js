@@ -19,6 +19,8 @@ function selecionarCor(evt) {
     $(evt.target).addClass("cor-selecionada");
     btnCorAnterior.removeClass("cor-selecionada");
 
+    btnCorAnterior.toogleClass("");
+
     if ($(".cor-selecionada").length === 0) corSelecionada = "";
     else corSelecionada = evt.target.id;
 }

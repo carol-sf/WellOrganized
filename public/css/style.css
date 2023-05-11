@@ -16,6 +16,13 @@ body {
     margin: 10px 30px;
 }
 
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 header {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
@@ -25,22 +32,21 @@ header {
 
 nav {
     display: flex;
-    width: 100%;
+    /* width: 100%; */
     padding: 45px 50px 0 45px; 
-
 }
 
 nav ul {
-    display: flex;
+    /* OBS: já tem uma configuração geral de ul lá em cima */
+    /* display: flex;
     flex-wrap: wrap;
-    list-style: none;
+    list-style: none; */
     padding: 10px 30px;
     margin-left: 121px;
 }
 
 nav ul li {
     margin: 0 20px;
-
 }
 
 nav ul li a {
@@ -48,28 +54,27 @@ nav ul li a {
     color: black;
 }
 
-main {
+#cabecalho {
     height: 100px;
 }
 
-
-main .botao-add-tarefa {
-    height: 100px;
-    display: block;
+#cabecalho .botao-add-tarefa {
+    /* height: 100px; */
+    /* display: block; */
     align-items: center;
 }
 
-main .botao-add-tarefa .btn-a-fazer {
+#cabecalho .botao-add-tarefa .btn-a-fazer {
     padding: 30px 50px 30px 45px;  
-    position: absolute;
+    /* position: absolute; */
     background-color: inherit;
     border: none;
-    appearance: none;
+    /* appearance: none; */
     cursor: pointer;
     display: flex;
 }
 
-main .botao-add-tarefa .btn-a-fazer p {
+#cabecalho .botao-add-tarefa .btn-a-fazer p {
     color: #2196f3;
     font-size: 24px;
     padding: 12px 0px 0px 10px;
@@ -77,14 +82,18 @@ main .botao-add-tarefa .btn-a-fazer p {
     font-weight: 500;
 }
 
-main .btn-a-fazer img {
+#cabecalho .btn-a-fazer img {
     height: 50px;
     width: 50px;
 }
 
 .esconde {
-    visibility: hidden;
-    display: block;
+    /* visibility: hidden; */ 
+    /* display: block; */
+
+    /* OBS: para n ter que botar a margem -75px no adicaoTarefas nem o position absolute no botao-add-tarefa 
+    (o visibility só deixa transparente, mas não tira o elemento de lá) */
+    display: none;
 }
 
 .adicaoTarefas {
@@ -92,7 +101,7 @@ main .btn-a-fazer img {
     padding: 5px 50px 0 45px;
     align-items: center;
     display: none;
-    margin-top: -75px;
+    /* margin-top: -75px; */
 }
 
 .adicaoTarefas label {
@@ -115,7 +124,7 @@ main .btn-a-fazer img {
 }
 
 .hide {
-    display: block;
+    /* display: block; */
     display: flex;
 }
 
@@ -137,7 +146,17 @@ main .btn-a-fazer img {
     height: 20px;
     width: 20px;
     /* box-shadow: 0 1px 0 gray; */
+
+    /* OBS: nenhuma nao :) só que não tava com o pointer hehe */
+    cursor: pointer; 
 }
+
+/* OBS: para os quadradinhos não ficarem esprimidos */
+.divCor {
+    display: flex;
+}
+
+/* OBS: pode apagar esses aqui né? */
 
 /* .adicaoTarefas button.azulAdd {
     background-color: #daf5fa;
@@ -170,13 +189,6 @@ main .btn-a-fazer img {
 .tarefas{
     /* margin-top: 40px; */
     padding: 45px 50px 30px 45px; 
-}
-
- ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .cartao {
@@ -287,7 +299,7 @@ li.arquivada .check {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-.subtituloPagina{
+/* .subtituloPagina{
     height: 55px;
     display: flex;
     align-items: center;
@@ -299,4 +311,4 @@ li.arquivada .check {
     font-weight: 400;
     margin-top:20px;
    
-}
+} */
