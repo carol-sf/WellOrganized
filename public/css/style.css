@@ -37,10 +37,6 @@ nav {
 }
 
 nav ul {
-    /* OBS: já tem uma configuração geral de ul lá em cima */
-    /* display: flex;
-    flex-wrap: wrap;
-    list-style: none; */
     padding: 10px 30px;
     margin-left: 121px;
 }
@@ -59,17 +55,13 @@ nav ul li a {
 }
 
 #cabecalho .botao-add-tarefa {
-    /* height: 100px; */
-    /* display: block; */
     align-items: center;
 }
 
 #cabecalho .botao-add-tarefa .btn-a-fazer {
     padding: 30px 50px 30px 45px;  
-    /* position: absolute; */
     background-color: inherit;
     border: none;
-    /* appearance: none; */
     cursor: pointer;
     display: flex;
 }
@@ -88,11 +80,6 @@ nav ul li a {
 }
 
 .esconde {
-    /* visibility: hidden; */ 
-    /* display: block; */
-
-    /* OBS: para n ter que botar a margem -75px no adicaoTarefas nem o position absolute no botao-add-tarefa 
-    (o visibility só deixa transparente, mas não tira o elemento de lá) */
     display: none;
 }
 
@@ -101,7 +88,6 @@ nav ul li a {
     padding: 5px 50px 0 45px;
     align-items: center;
     display: none;
-    /* margin-top: -75px; */
 }
 
 .adicaoTarefas label {
@@ -124,7 +110,6 @@ nav ul li a {
 }
 
 .hide {
-    /* display: block; */
     display: flex;
 }
 
@@ -145,9 +130,6 @@ nav ul li a {
     margin-left: 15px;
     height: 20px;
     width: 20px;
-    /* box-shadow: 0 1px 0 gray; */
-
-    /* OBS: nenhuma nao :) só que não tava com o pointer hehe */
     cursor: pointer; 
 }
 
@@ -155,36 +137,6 @@ nav ul li a {
 .divCor {
     display: flex;
 }
-
-/* OBS: pode apagar esses aqui né? */
-
-/* .adicaoTarefas button.azulAdd {
-    background-color: #daf5fa;
-}
-
-.adicaoTarefas button.verdeAdd {
-    background-color: #d1fecb;
-}
-
-.adicaoTarefas button.rosaAdd {
-    background-color: #f6d0f6;
-}
-
-.adicaoTarefas button.roxoAdd {
-    background-color: #dcd0f3;
-}
-
-.adicaoTarefas button.amareloAdd {
-    background-color: #fcfccb;
-}
-
-.adicaoTarefas button.laranjaAdd {
-    background-color: #fbd4b4;
-}
-
-.adicaoTarefas button.brancoAdd {
-    background-color: #ffffff;
-} */
 
 .tarefas{
     /* margin-top: 40px; */
@@ -299,7 +251,7 @@ li.arquivada .check {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* .subtituloPagina{
+.subtituloPagina{
     height: 55px;
     display: flex;
     align-items: center;
@@ -311,4 +263,4 @@ li.arquivada .check {
     font-weight: 400;
     margin-top:20px;
    
-} */
+}
