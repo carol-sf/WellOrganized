@@ -1,13 +1,14 @@
-document.getElementById("alterarStatusDiv").addEventListener("click", adicionandoTarefas);
-const adicaoTarefas = document.getElementById("adicaoTarefas");
-const btnAddTarefa = document.getElementById("botao-add-tarefa");
 
-function adicionandoTarefas(evt) {
-    btnAddTarefa.classList.toggle("esconde");
-    adicaoTarefas.classList.toggle("hide");
+$("#alterarStatusDiv").on("click",adicionandoTarefas)
+const adicaoTarefas = $("#adicaoTarefas");
+const btnAddTarefa = $("#botao-add-tarefa");
+
+function adicionandoTarefas() {
+   btnAddTarefa.toggleClass("esconde");
+   adicaoTarefas.toggleClass("hide");
 }
 
-// Criando as tarefas (usando o jQuery)
+// Criando as tarefas (usando o jQu1ery)
 
 let entrada = $("#entrada").get(0);
 let corSelecionada = "";
