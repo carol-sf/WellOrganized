@@ -1,15 +1,16 @@
 
-$("#alterarStatusDiv").on("click",adicionandoTarefas)
+$("#alterarStatusDiv").on("click", adicionandoTarefas)
 const adicaoTarefas = $("#adicaoTarefas");
 const btnAddTarefa = $("#botao-add-tarefa");
 
 function adicionandoTarefas() {
-   btnAddTarefa.toggleClass("esconde");
-   adicaoTarefas.toggleClass("hide");
+    btnAddTarefa.toggleClass("esconde");
+    adicaoTarefas.toggleClass("hide");
+
 }
 
 // Criando as tarefas (usando o jQu1ery)
-
+let listaFazer = $("#listaFazer");
 let entrada = $("#entrada").get(0);
 let corSelecionada = "";
 $(".btnCor").on("click", selecionarCor);
@@ -24,9 +25,32 @@ function selecionarCor(evt) {
     else corSelecionada = evt.target.id;
 }
 
+//Temos que criar uma função para ver se o itemJáExiste
+//listaFazer
+// if(itemJaExiste(input.value.trim(), listaFazer)
+function conteudoCartaoJaExiste(entrada, lista) {
+    const itens = Array.from(lista.childNodes);
+    return  itens.map((cartao) => {
+        return cartao.childNodes[1].textContent;
+    }).includes(entrada);
+}
+
 function validar() {
-    // fazer validações do vídeo
-    return true;
+    if (entrada.value.trim() === "" || corSelecionada == "") {
+        alert('Você deve fornecer uma descrição');
+    } else if (conteudoCartaoJaExiste(entrada, $("#listaFazer"))){
+            alert("Item já existe");
+    }else {
+            return true;
+        }
+    }
+
+
+//TENTEI USAR O RESET DO JQUERY, MAS ESTAVA DANDO TODA HORA ERRO
+function resetFormulario(entrada, corSelecionada) {
+    entrada.value = "";
+    corSelecionada.value = ""; //O VALUE DO BOTAO NAO FUNCTIONA
+
 }
 
 function criarTarefa(tarefa) {
@@ -37,7 +61,7 @@ function criarTarefa(tarefa) {
     if (tarefa.concluida) {
         textoCabecalho = "Concluída";
         statusConcluida = "concluida";
-    } 
+    }
     else textoCabecalho = "Não concluída";
     if (tarefa.arquivada) statusArquivada = "arquivada";
 
@@ -53,14 +77,17 @@ function criarTarefa(tarefa) {
 }
 
 function adicionarTarefa() {
-    if(validar()) {
+
+    if (validar()) {
         console.log(entrada);
         let tarefa = { desc: entrada.value, cor: corSelecionada, concluida: false, arquivada: false }
 
         // armazenar tarefa no local storage
 
         criarTarefa(tarefa).appendTo($("#listaFazer"));
+        // conteudoCartaoJaExiste(entrada,$("#listaFazer"));
 
         // limpar formulário
+        resetFormulario(entrada, corSelecionada); //como entrada já está definida
     }
 }
