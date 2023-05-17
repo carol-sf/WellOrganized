@@ -6,3 +6,4 @@ Sempre refatorar (achar uma manera mais simples, tirar coisas desnecessárias e 
 [] não usar divs desnecessárias
 [] declarar as variáveis globais só se for usar em mais lugares
 [] se a variável estiver sendo usada só uma vez, ela não é necessária
+[] se a variável precisa ser let ou pode ser const

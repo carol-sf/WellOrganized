@@ -1,3 +1,8 @@
+$(".btnCor").on("click", selecionarCor);
+$("#btn-add").click(adicionarTarefa);
+
+const entrada = $("#entrada");
+let corSelecionada = "";
 
 $("#alterarStatusDiv").on("click", adicionandoTarefas)
 const adicaoTarefas = $("#adicaoTarefas");
@@ -8,14 +13,6 @@ function adicionandoTarefas() {
     adicaoTarefas.toggleClass("hide");
 
 }
-
-// Criando as tarefas (usando o jQu1ery)
-let listaFazer = $("#listaFazer");
-
-let entrada = $("#entrada").get(0);
-let corSelecionada = "";
-$(".btnCor").on("click", selecionarCor);
-$("#btn-add").click(adicionarTarefa);
 
 function selecionarCor(evt) {
     let btnCorAnterior = $(".cor-selecionada");
@@ -37,8 +34,12 @@ function conteudoCartaoJaExiste(entrada, lista) {
 }
 
 function validar() {
-    if (entrada.value.trim() === "" || corSelecionada == "") {
+    if (entrada.val().trim() === "" || corSelecionada == "") {
         alert('Você deve fornecer uma descrição');
+
+        // OBS: o retorno estava dando "undefined"
+        return false;
+
         // } else if (conteudoCartaoJaExiste(entrada, $("#listaFazer"))){
         //         alert("Item já existe");
     } else {
@@ -47,11 +48,12 @@ function validar() {
 }
 
 
-//TENTEI USAR O RESET DO JQUERY, MAS ESTAVA DANDO TODA HORA ERRO
-function resetFormulario(entrada, corSelecionada) {
-    entrada.value = "";
-    corSelecionada.value = ""; //O VALUE DO BOTAO NAO FUNCTIONA
+// OBS: Tirei os parâmetros
+function resetFormulario() {
+    // entrada.value = "";
+    // corSelecionada.value = ""; //O VALUE DO BOTAO NAO FUNCTIONA
 
+    entrada.val("");
 }
 
 function criarTarefa(tarefa) {
@@ -80,15 +82,18 @@ function criarTarefa(tarefa) {
 function adicionarTarefa() {
 
     if (validar()) {
-        console.log(entrada);
-        let tarefa = { desc: entrada.value, cor: corSelecionada, concluida: false, arquivada: false }
+        const tarefa = { desc: entrada.val(), cor: corSelecionada, concluida: false, arquivada: false }
 
         // armazenar tarefa no local storage
 
         criarTarefa(tarefa).appendTo($("#listaFazer"));
         // conteudoCartaoJaExiste(entrada,$("#listaFazer"));
 
-        // limpar formulário
-        resetFormulario(entrada, corSelecionada); //como entrada já está definida
+        // OBS:
+        // Exatamente por entrada já estar definida que não precisamos passar ela como parâmetro
+        // Como ela foi declarada fora de uma função lá em cima, todas as funções enxergam ela
+        // a mesma coisa acontece com "corSelecionada"
+        // resetFormulario(entrada, corSelecionada); //como entrada já está definida
+        resetFormulario();
     }
 }
