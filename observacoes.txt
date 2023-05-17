@@ -1,0 +1,8 @@
+Fazer:
+[] Mudar logo do cabecalho para img (nas duas páginas)
+
+Sempre refatorar (achar uma manera mais simples, tirar coisas desnecessárias e padronizar):
+[] padronizar a nomenclatura do id e classes
+[] não usar divs desnecessárias
+[] declarar as variáveis globais só se for usar em mais lugares
+[] se a variável estiver sendo usada só uma vez, ela não é necessária
