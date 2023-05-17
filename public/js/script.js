@@ -38,8 +38,8 @@ function conteudoCartaoJaExiste(entrada, lista) {
 function validar() {
     if (entrada.value.trim() === "" || corSelecionada == "") {
         alert('Você deve fornecer uma descrição');
-    } else if (conteudoCartaoJaExiste(entrada, $("#listaFazer"))){
-            alert("Item já existe");
+    // } else if (conteudoCartaoJaExiste(entrada, $("#listaFazer"))){
+    //         alert("Item já existe");
     }else {
             return true;
         }
