@@ -11,6 +11,7 @@ function adicionandoTarefas() {
 
 // Criando as tarefas (usando o jQu1ery)
 let listaFazer = $("#listaFazer");
+
 let entrada = $("#entrada").get(0);
 let corSelecionada = "";
 $(".btnCor").on("click", selecionarCor);
@@ -30,7 +31,7 @@ function selecionarCor(evt) {
 // if(itemJaExiste(input.value.trim(), listaFazer)
 function conteudoCartaoJaExiste(entrada, lista) {
     const itens = Array.from(lista.childNodes);
-    return  itens.map((cartao) => {
+    return itens.map((cartao) => {
         return cartao.childNodes[1].textContent;
     }).includes(entrada);
 }
@@ -38,12 +39,12 @@ function conteudoCartaoJaExiste(entrada, lista) {
 function validar() {
     if (entrada.value.trim() === "" || corSelecionada == "") {
         alert('Você deve fornecer uma descrição');
-    // } else if (conteudoCartaoJaExiste(entrada, $("#listaFazer"))){
-    //         alert("Item já existe");
-    }else {
-            return true;
-        }
+        // } else if (conteudoCartaoJaExiste(entrada, $("#listaFazer"))){
+        //         alert("Item já existe");
+    } else {
+        return true;
     }
+}
 
 
 //TENTEI USAR O RESET DO JQUERY, MAS ESTAVA DANDO TODA HORA ERRO
