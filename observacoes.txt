@@ -1,6 +1,16 @@
-Fazer:
-[] Mudar logo do cabecalho para img (nas duas páginas)
+Para terminar o adicionarTarefa:
+[] resetFormulario - botar o foco no input e tirar a seleção da cor
+[] armazenar as tarefas no local storage
+[] conteudoCartaoJaExiste - fazer de acordo com a lista do local storage
+[] terminar o validar
+[] mudar a validação pra cor para um alert específico
 
+Fazer depois:
+[] carregarTarefas
+[] concluirTarefa
+
+
+--------------------------------------------------------------------------------------------------------------------------
 Sempre refatorar (achar uma manera mais simples, tirar coisas desnecessárias e padronizar):
 [] padronizar a nomenclatura do id e classes
 [] não usar divs desnecessárias
