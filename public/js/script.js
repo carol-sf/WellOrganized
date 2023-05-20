@@ -25,7 +25,6 @@ function selecionarCor(evt) {
     else corSelecionada = evt.target.id;
 }
 
-
 //Aqui eu fiz algumas alterações para deixar a função mais clean. Mudei a forma como  eu convertia
 //o lista.childNodes com o Array para o método $.makeArray() do jquery, pois este método converte o lista.children() em um array
 // e também como eu havia falado da função do jquery children() eu acabei utt ela no lugar de childNodes como estava antes - AKarolynna
