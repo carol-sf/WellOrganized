@@ -1,17 +1,19 @@
 $(".btnCor").on("click", selecionarCor);
 $("#btn-add").click(adicionarTarefa);
-
-const entrada = $("#entrada");
-let corSelecionada = "";
-
 $("#alterarStatusDiv").on("click", adicionandoTarefas)
 const adicaoTarefas = $("#adicaoTarefas");
 const btnAddTarefa = $("#botao-add-tarefa");
+const entrada = $("#entrada");
+let corSelecionada = "";
+
+$(document).ready(function() {
+    //O codigo abaixo me permite exibir minhas tarefas no localstorage assim que minha tela é inicializada! - AKarolynna
+    obterTarefasDoLocalStorage();
+    });
 
 function adicionandoTarefas() {
     btnAddTarefa.toggleClass("esconde");
     adicaoTarefas.toggleClass("hide");
-
 }
 
 function selecionarCor(evt) {
@@ -23,38 +25,53 @@ function selecionarCor(evt) {
     else corSelecionada = evt.target.id;
 }
 
-//Temos que criar uma função para ver se o itemJáExiste
-//listaFazer
-// if(itemJaExiste(input.value.trim(), listaFazer)
+
+//Aqui eu fiz algumas alterações para deixar a função mais clean. Mudei a forma como  eu convertia
+//o lista.childNodes com o Array para o método $.makeArray() do jquery, pois este método converte o lista.children() em um array
+// e também como eu havia falado da função do jquery children() eu acabei utt ela no lugar de childNodes como estava antes - AKarolynna
 function conteudoCartaoJaExiste(entrada, lista) {
-    const itens = Array.from(lista.childNodes);
+    const itens = $.makeArray(lista.children());
     return itens.map((cartao) => {
-        return cartao.childNodes[1].textContent;
+        return $(cartao).children().eq(1).text();
     }).includes(entrada);
 }
 
+// Como remodelei a função validar para corrigir os problemas que ela estava apresentando:
+// O problema estava no argumento que estava sendo passado na função conteudoCartaoJaExiste()
+// pois estavamos passando a entrada, porém não estavamos de fato pegando seu valor. Aí fazendo essa modificação funcionou - AKarolynna
+
 function validar() {
-    if (entrada.val().trim() === "" || corSelecionada == "") {
+    if (entrada.val().trim() === "" || corSelecionada === "") {
         alert('Você deve fornecer uma descrição');
-
-        // OBS: o retorno estava dando "undefined"
         return false;
-
-        // } else if (conteudoCartaoJaExiste(entrada, $("#listaFazer"))){
-        //         alert("Item já existe");
+    } else if (conteudoCartaoJaExiste(entrada.val(), $("#listaFazer"))) {
+        alert("Item já existe");
+        return false;
     } else {
         return true;
     }
 }
 
-
-// OBS: Tirei os parâmetros
+//Aqui eu consegui fazer com que os botões de cores selecionadas ficassem sem aquela sombra no final, e você vai
+//  ver que quando reseta o formulario e você dá um console.log na cor ela vai aparecer como undefined então está funcionando rsrs - AKarolynna
 function resetFormulario() {
-    // entrada.value = "";
-    // corSelecionada.value = ""; //O VALUE DO BOTAO NAO FUNCTIONA
-
     entrada.val("");
+    $(".cor-selecionada").removeClass("cor-selecionada");
 }
+
+// Aqui colocamos o for, pois sem ele só conseguiamos salvar apenas um cartão no localStorage
+// mas com o for conseguimos fazer com que salve mais de um cartão, assim, cada vez  que nós adicionarmos um novo
+// cartão ele já adiciona no localStorage este carrtão junto com os outros existentes
+function obterTarefasDoLocalStorage() {
+    const tarefasString = localStorage.getItem('tarefas');
+    if (tarefasString) {
+      const tarefas = JSON.parse(tarefasString);
+      for (const tarefa of tarefas) {
+        const cartaoTarefa = criarTarefa(tarefa);
+        cartaoTarefa.appendTo($("#listaFazer"));
+      }
+    }
+  }
 
 function criarTarefa(tarefa) {
     let textoCabecalho = "";
@@ -80,20 +97,27 @@ function criarTarefa(tarefa) {
 }
 
 function adicionarTarefa() {
-
     if (validar()) {
-        const tarefa = { desc: entrada.val(), cor: corSelecionada, concluida: false, arquivada: false }
+      const tarefa = { desc: entrada.val(), cor: corSelecionada, concluida: false, arquivada: false };
+  
+      // Obter tarefas existentes do localStorage
+      const tarefasString = localStorage.getItem('tarefas'); //obtém o valor armazenado no localStorage com a chave 'tarefa'. 
+      let tarefas = [];
 
-        // armazenar tarefa no local storage
-
-        criarTarefa(tarefa).appendTo($("#listaFazer"));
-        // conteudoCartaoJaExiste(entrada,$("#listaFazer"));
-
-        // OBS:
-        // Exatamente por entrada já estar definida que não precisamos passar ela como parâmetro
-        // Como ela foi declarada fora de uma função lá em cima, todas as funções enxergam ela
-        // a mesma coisa acontece com "corSelecionada"
-        // resetFormulario(entrada, corSelecionada); //como entrada já está definida
-        resetFormulario();
+      if (tarefasString) {
+        tarefas = JSON.parse(tarefasString);
+      }
+  
+      // Adicionar a nova tarefa ao array
+      tarefas.push(tarefa);
+  
+      // Salvar o array atualizado no localStorage
+      localStorage.setItem('tarefas', JSON.stringify(tarefas));
+  
+      // Criar e adicionar o cartão da nova tarefa na tela
+      const cartaoTarefa = criarTarefa(tarefa);
+      cartaoTarefa.appendTo($("#listaFazer"));
+  
+      resetFormulario();
     }
-}
+  }
