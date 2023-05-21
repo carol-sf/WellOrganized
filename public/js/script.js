@@ -118,8 +118,7 @@ function carregarTarefas() {
 
 
 
-// FIZ ALGUNS COMENTÁRIOS E ADAPTAÇÕES NESSA PARTE -----------------------------------------------------------------------
-
+// ADICINEI O EVENTO DE CLICK AQ -----------------------------------------------------------------------------------------
 function criarTarefa(tarefa) {
     let textoCabecalho = "";
     let statusConcluida = "";
@@ -142,7 +141,10 @@ function criarTarefa(tarefa) {
 
     return cartao;
 }
+// -----------------------------------------------------------------------------------------------------------------------
 
+
+// ADAPTEI PRAS FUNÇOES GET E SET DO LOCAL STORAGE -----------------------------------------------------------------------
 function adicionarTarefa() {
     if (validar()) {
         const tarefa = { desc: entrada.val(), cor: corSelecionada, concluida: false, arquivada: false };
