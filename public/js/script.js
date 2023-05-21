@@ -222,5 +222,6 @@ function arquivarTarefa(evt) {
         tarefas[indice].arquivada = true;
         setTarefasLocalStorage(tarefas);
         cartaoAtual.addClass("arquivada");
+        cartaoAtual.remove();
     }
 }
