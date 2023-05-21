@@ -123,7 +123,7 @@ function criarTarefa(tarefa) {
     $(`<span>${textoCabecalho}</span>`).appendTo(divCabecalho);
     let divCorpo = $("<div></div>").addClass("cartao-corpo").appendTo(cartao);
     $(`<p>${tarefa.desc}</p>`).appendTo(divCorpo);
-    $("<div></div>").addClass("cartao-rodape").appendTo(cartao).click(arquivarTarefa); // Mesma coisa do caso de cima
+    $("<div></div>").addClass("cartao-rodape").appendTo(cartao).click(removerTarefa); // Mesma coisa do caso de cima
 
     return cartao;
 }
@@ -206,7 +206,17 @@ function concluirTarefa(evt) {
     }
 }
 
-function arquivarTarefa(evt) {
+function arquivarTarefa(cartaoAtual, indiceCartaoAtual, tarefas) {
+    tarefas[indiceCartaoAtual].arquivada = true;
+    setTarefasLocalStorage(tarefas);
+    cartaoAtual.addClass("arquivada");
+}
+
+function excluirTarefa() {
+
+}
+
+function removerTarefa(evt) {
     // pegando o cartão clicado
     const cartaoAtual = $(evt.target).parent();
 
@@ -219,9 +229,8 @@ function arquivarTarefa(evt) {
 
     // se o cartão estiver concluido pode continuar, se não n faz nada
     if(cartaoAtual.attr("class").includes("concluida")) {
-        tarefas[indice].arquivada = true;
-        setTarefasLocalStorage(tarefas);
-        cartaoAtual.addClass("arquivada");
+        if (cartaoAtual.attr("class").includes("arquivada")) excluirTarefa();
+        else arquivarTarefa(cartaoAtual, indice, tarefas);
         cartaoAtual.remove();
     }
 }
