@@ -90,7 +90,7 @@ function criarTarefa(tarefa) {
     $(`<span>${textoCabecalho}</span>`).appendTo(divCabecalho);
     let divCorpo = $("<div></div>").addClass("cartao-corpo").appendTo(cartao);
     $(`<p>${tarefa.desc}</p>`).appendTo(divCorpo);
-    $("<div></div>").addClass("cartao-rodape").appendTo(cartao).click(removerTarefa); // Mesma coisa do caso de cima
+    $("<div></div>").addClass("cartao-rodape").appendTo(cartao).click(arquivarTarefa); // Mesma coisa do caso de cima
 
     return cartao;
 }
@@ -170,5 +170,24 @@ function concluirTarefa(evt) {
         // botando a classe concluida no cartao (ou tirando, caso ela já esteja lá)
         // assim, quando eu apertar o check ele vai deixar o cabeçalho verdinho, deixar a descrição da tarefa riscada e habilitar o botão de arquivar lá em baixo (ou voltar como tava antes, sem essas alterações)
         divCartao.toggleClass("concluida");
+    }
+}
+
+function arquivarTarefa(evt) {
+    // pegando o cartão clicado
+    const cartaoAtual = $(evt.target).parent();
+
+    // descobrindo o indice da tarefa com a descrição correspondente no local storage
+    const descCartaoAtual = cartaoAtual.children().eq(1).text();
+    const tarefas = getTarefasLocalStorage();
+    const indice = tarefas.findIndex((elem) =>
+        elem.desc === descCartaoAtual
+    );
+
+    // se o cartão estiver concluido pode continuar, se não n faz nada
+    if(cartaoAtual.attr("class").includes("concluida")) {
+        tarefas[indice].arquivada = true;
+        setTarefasLocalStorage(tarefas);
+        cartaoAtual.addClass("arquivada");
     }
 }
