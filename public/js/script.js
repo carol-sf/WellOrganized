@@ -20,19 +20,14 @@ function selecionarCor(evt) {
     else corSelecionada = evt.target.id;
 }
 
-//Aqui eu fiz algumas alterações para deixar a função mais clean. Mudei a forma como  eu convertia
-//o lista.childNodes com o Array para o método $.makeArray() do jquery, pois este método converte o lista.children() em um array
-// e também como eu havia falado da função do jquery children() eu acabei utt ela no lugar de childNodes como estava antes - AKarolynna
+// ACHO Q VAI TER QUE FAZER ALGUMA ALTERAÇÃO, POIS ESSA FUNÇAO NÃO CONTA COM OS CARTOES ARQUIVADOS
+// SE EU ARQUIVO UM CARTÃO EU POSSO ADICIONAR OUTRO COM A MESMA DESCRIÇÃO, MEMSMO ANTES DE EXCLUIR ELE
 function conteudoCartaoJaExiste(entrada, lista) {
     const itens = $.makeArray(lista.children());
     return itens.map((cartao) => {
         return $(cartao).children().eq(1).text();
     }).includes(entrada);
 }
-
-// Como remodelei a função validar para corrigir os problemas que ela estava apresentando:
-// O problema estava no argumento que estava sendo passado na função conteudoCartaoJaExiste()
-// pois estavamos passando a entrada, porém não estavamos de fato pegando seu valor. Aí fazendo essa modificação funcionou - AKarolynna
 
 function validar() {
     if (entrada.val().trim() === "" || corSelecionada === "") {
@@ -46,14 +41,31 @@ function validar() {
     }
 }
 
-//Aqui eu consegui fazer com que os botões de cores selecionadas ficassem sem aquela sombra no final, e você vai
-//  ver que quando reseta o formulario e você dá um console.log na cor ela vai aparecer como undefined então está funcionando rsrs - AKarolynna
 function resetFormulario() {
     entrada.val("");
     $(".cor-selecionada").removeClass("cor-selecionada");
 }
 
-// INÍCIO - 1° alteração -------------------------------------------------------------------------------------------------
+
+
+// MECHENDO NO LOCAL STORAGE ---------------------------------------------------------------------------------------------
+
+// Eu vou precisar pegar e atualizar minha lista de tarefas várias vezes ao longo do código e não apenas no "adicionarTarefa()", então botei essas funcionalidades em funções, igual o Lenadro
+
+// Obs: aqui ele já converte de string pra JSON, pois isso SEMPRE precisará ser feito
+function getTarefasLocalStorage() {
+    return JSON.parse(localStorage.getItem('tarefas')) || [];
+}
+
+// Obs: aqui ele já converte de JSON pra string, pois isso SEMPRE precisará ser feito
+function setTarefasLocalStorage(tarefas) {
+    localStorage.setItem("tarefas", JSON.stringify(tarefas));
+}
+// -----------------------------------------------------------------------------------------------------------------------
+
+
+
+// MOSTRANDO AS TAREFAS ASSIM QUE A PÁGINA É CARREGADA -------------------------------------------------------------------
 
 /*
     ALTERAÇÕES NECESSÁRIAS:
@@ -64,12 +76,13 @@ function resetFormulario() {
     - Essa função "obterTarefasDoLocalStorage()" na verdade não está salvando nada no local storage, ela está:
         - pegando cada um dos itens que já estão salvos lá, 
         - criando eles na forma de cartão (um item de lista),
-        - e mando ele ser mostrado na listaFazer (que está vazia no index)
+        - e mandando ele ser mostrado na listaFazer (que está vazia no index)
     - Então na verdade essa função é a de carregar as tarefas no DOM.
 
     SUGESTÕES:
     - alterar para um nome mais fiel a sua funcionalidade
     - usar o foreach pra um código mais conciso
+    - a variável "cartao tarefa está sendo usada só uma vez, então ela n é necessária"
     - usar o "getTarefasLocalStorage()" 
         - criei pra gente n ter que ficar usando os comandos de "localStorage.getItem()" e transformando ele p string toda hora
  */
@@ -101,9 +114,11 @@ function carregarTarefas() {
         else criarTarefa(tarefa).appendTo($("#listaFazer"));
     });
 }
+// -----------------------------------------------------------------------------------------------------------------------
 
-// FIM - 1° alteração ----------------------------------------------------------------------------------------------------
 
+
+// FIZ ALGUNS COMENTÁRIOS E ADAPTAÇÕES NESSA PARTE -----------------------------------------------------------------------
 
 function criarTarefa(tarefa) {
     let textoCabecalho = "";
@@ -119,11 +134,11 @@ function criarTarefa(tarefa) {
 
     let cartao = $("<li></li>").addClass(`cartao ${tarefa.cor} ${statusConcluida} ${statusArquivada}`);
     let divCabecalho = $("<div></div>").addClass("cartao-cabecalho").appendTo(cartao);
-    $("<div></div>").addClass("check").appendTo(divCabecalho).click(concluirTarefa); // Tive que botar o listener do evento aqui, pois antes dessa função ele não existia
+    $("<div></div>").addClass("check").appendTo(divCabecalho).click(concluirTarefa); // OBS - A.C: Tive que botar o listener do evento aqui, pois antes dessa função ele não existia
     $(`<span>${textoCabecalho}</span>`).appendTo(divCabecalho);
     let divCorpo = $("<div></div>").addClass("cartao-corpo").appendTo(cartao);
     $(`<p>${tarefa.desc}</p>`).appendTo(divCorpo);
-    $("<div></div>").addClass("cartao-rodape").appendTo(cartao).click(removerTarefa); // Mesma coisa do caso de cima
+    $("<div></div>").addClass("cartao-rodape").appendTo(cartao).click(removerTarefa); // OBS - A.C: Mesma coisa do caso de cima
 
     return cartao;
 }
@@ -132,42 +147,44 @@ function adicionarTarefa() {
     if (validar()) {
         const tarefa = { desc: entrada.val(), cor: corSelecionada, concluida: false, arquivada: false };
 
-        // Obter tarefas existentes do localStorage
-        const tarefasString = localStorage.getItem('tarefas'); //obtém o valor armazenado no localStorage com a chave 'tarefa'. 
-        let tarefas = [];
+        /*
+            OBS - A.C: botei essa parte dentro da função "getTarefasLocalStorage()" pra poder usar mais vezes
+            (precisei usar nas funções "concluir", "arquivar" e "excluir")
 
-        if (tarefasString) {
-            tarefas = JSON.parse(tarefasString);
-        }
+            // Obter tarefas existentes do localStorage
+            const tarefasString = localStorage.getItem('tarefas'); 
+            let tarefas = [];
+            if (tarefasString) {
+                tarefas = JSON.parse(tarefasString);
+            }
+        */        
+        let tarefas = getTarefasLocalStorage();
+
 
         // Adicionar a nova tarefa ao array
         tarefas.push(tarefa);
 
-        // Salvar o array atualizado no localStorage
-        localStorage.setItem('tarefas', JSON.stringify(tarefas));
 
-        // Criar e adicionar o cartão da nova tarefa na tela
-        const cartaoTarefa = criarTarefa(tarefa);
-        cartaoTarefa.appendTo($("#listaFazer"));
+        /* 
+            OBS - A.C: botei essa parte dentro da função "setTarefasLocalStorage()" pra poder usar mais vezes
+            
+            // Salvar o array atualizado no localStorage
+            localStorage.setItem('tarefas', JSON.stringify(tarefas));
+        */        
+        setTarefasLocalStorage(tarefas);
 
+        
+        /* 
+            OBS - A.C: a variável "cartaoTarefa" só está sendo usada uma vez, vc acha que ela é mesmo necessária? Porque se botar direto tbm funciona direitinho
+
+            // Criar e adicionar o cartão da nova tarefa na tela
+            const cartaoTarefa = criarTarefa(tarefa);
+            cartaoTarefa.appendTo($("#listaFazer"));
+        */
+        criarTarefa(tarefa).appendTo($("#listaFazer"));
+        
         resetFormulario();
     }
-}
-
-
-
-
-// MECHENDO NO LOCAL STORAGE ---------------------------------------------------------------------------------------------
-// Eu vou precisar pegar e atualizar minha lista de tarefas várias vezes ao longo do código e não apenas no "adicionarTarefa()", então botei essas funcionalidades em funções, igual o Lenadro
-
-// Obs: aqui ele já converte de string pra JSON, pois isso SEMPRE precisará ser feito
-function getTarefasLocalStorage() {
-    return JSON.parse(localStorage.getItem('tarefas')) || [];
-}
-
-// Obs: aqui ele já converte de JSON pra string, pois isso SEMPRE precisará ser feito
-function setTarefasLocalStorage(tarefas) {
-    localStorage.setItem("tarefas", JSON.stringify(tarefas));
 }
 // -----------------------------------------------------------------------------------------------------------------------
 
@@ -244,3 +261,4 @@ function excluirTarefa(indiceCartaoAtual, tarefas) {
     tarefas.splice(indiceCartaoAtual, 1); // retira o item da lista "tarefas" que está no indice "indiceCartaoAtual"
     setTarefasLocalStorage(tarefas); // atualiza o local storage
 }
+// -----------------------------------------------------------------------------------------------------------------------
