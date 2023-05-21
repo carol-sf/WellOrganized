@@ -172,6 +172,9 @@ function setTarefasLocalStorage(tarefas) {
 // -----------------------------------------------------------------------------------------------------------------------
 
 
+
+// FUNÇÕES CONCLUIR, ARQUIVAR E EXCLUIR ----------------------------------------------------------------------------------
+
 function concluirTarefa(evt) {
     // pegando o cartão clicado
     const divCabecalho = $(evt.target).parent();
@@ -206,16 +209,7 @@ function concluirTarefa(evt) {
     }
 }
 
-function arquivarTarefa(cartaoAtual, indiceCartaoAtual, tarefas) {
-    tarefas[indiceCartaoAtual].arquivada = true;
-    setTarefasLocalStorage(tarefas);
-    cartaoAtual.addClass("arquivada");
-}
-
-function excluirTarefa() {
-
-}
-
+// Fiz uma função generica "removerTarefa()" pq tanto o botão de arquivar quanto o de excluir ficam na mesma div
 function removerTarefa(evt) {
     // pegando o cartão clicado
     const cartaoAtual = $(evt.target).parent();
@@ -229,8 +223,24 @@ function removerTarefa(evt) {
 
     // se o cartão estiver concluido pode continuar, se não n faz nada
     if(cartaoAtual.attr("class").includes("concluida")) {
-        if (cartaoAtual.attr("class").includes("arquivada")) excluirTarefa();
+
+        // se o cartao já estiver arquivado, quer dizer q o botão clicado foi o de excluir
+        // se não, o botão foi o de arquivar mesmo
+        if (cartaoAtual.attr("class").includes("arquivada")) excluirTarefa(indice, tarefas);
         else arquivarTarefa(cartaoAtual, indice, tarefas);
+
+        // tira o cartão da tela
         cartaoAtual.remove();
     }
+}
+
+function arquivarTarefa(cartaoAtual, indiceCartaoAtual, tarefas) {
+    tarefas[indiceCartaoAtual].arquivada = true; // muda o campo "arquivada" para true
+    setTarefasLocalStorage(tarefas); // atualiza o local storage
+    cartaoAtual.addClass("arquivada"); // adiciona a classe "arquivada" para fazer a estilização
+}
+
+function excluirTarefa(indiceCartaoAtual, tarefas) {
+    tarefas.splice(indiceCartaoAtual, 1); // retira o item da lista "tarefas" que está no indice "indiceCartaoAtual"
+    setTarefasLocalStorage(tarefas); // atualiza o local storage
 }
