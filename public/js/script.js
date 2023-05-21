@@ -6,11 +6,6 @@ const btnAddTarefa = $("#botao-add-tarefa");
 const entrada = $("#entrada");
 let corSelecionada = "";
 
-$(document).ready(function () {
-    //O codigo abaixo me permite exibir minhas tarefas no localstorage assim que minha tela é inicializada! - AKarolynna
-    obterTarefasDoLocalStorage();
-});
-
 function adicionandoTarefas() {
     btnAddTarefa.toggleClass("esconde");
     adicaoTarefas.toggleClass("hide");
@@ -58,19 +53,57 @@ function resetFormulario() {
     $(".cor-selecionada").removeClass("cor-selecionada");
 }
 
-// Aqui colocamos o for, pois sem ele só conseguiamos salvar apenas um cartão no localStorage
-// mas com o for conseguimos fazer com que salve mais de um cartão, assim, cada vez  que nós adicionarmos um novo
-// cartão ele já adiciona no localStorage este carrtão junto com os outros existentes
-function obterTarefasDoLocalStorage() {
-    const tarefasString = localStorage.getItem('tarefas');
-    if (tarefasString) {
-        const tarefas = JSON.parse(tarefasString);
-        for (const tarefa of tarefas) {
-            const cartaoTarefa = criarTarefa(tarefa);
-            cartaoTarefa.appendTo($("#listaFazer"));
-        }
-    }
+// INÍCIO - 1° alteração -------------------------------------------------------------------------------------------------
+
+/*
+    ALTERAÇÕES NECESSÁRIAS:
+    - Eu preciso que só as tarefas "a fazer" apareçam na "listaFazer" (as com "arquivada = false")
+    - As que estão aquivadas eu preciso que apareçam na "listaArquivadas" (as com "arquivada = true")
+
+    OBSERVAÇÕES:
+    - Essa função "obterTarefasDoLocalStorage()" na verdade não está salvando nada no local storage, ela está:
+        - pegando cada um dos itens que já estão salvos lá, 
+        - criando eles na forma de cartão (um item de lista),
+        - e mando ele ser mostrado na listaFazer (que está vazia no index)
+    - Então na verdade essa função é a de carregar as tarefas no DOM.
+
+    SUGESTÕES:
+    - alterar para um nome mais fiel a sua funcionalidade
+    - usar o foreach pra um código mais conciso
+    - usar o "getTarefasLocalStorage()" 
+        - criei pra gente n ter que ficar usando os comandos de "localStorage.getItem()" e transformando ele p string toda hora
+ */
+
+// $(document).ready(function () {
+//     obterTarefasDoLocalStorage();
+// });
+
+// // Aqui colocamos o for, pois sem ele só conseguiamos salvar apenas um cartão no localStorage
+// // mas com o for conseguimos fazer com que salve mais de um cartão, assim, cada vez  que nós adicionarmos um novo
+// // cartão ele já adiciona no localStorage este carrtão junto com os outros existentes
+// function obterTarefasDoLocalStorage() {
+//     const tarefasString = localStorage.getItem('tarefas');
+//     if (tarefasString) {
+//         const tarefas = JSON.parse(tarefasString);
+//         for (const tarefa of tarefas) {
+//             const cartaoTarefa = criarTarefa(tarefa);
+//             cartaoTarefa.appendTo($("#listaFazer"));
+//         }
+//     }
+// }
+
+$(document).ready(carregarTarefas);
+
+function carregarTarefas() {
+    const tarefas = getTarefasLocalStorage();
+    tarefas.forEach(tarefa => {
+        if (tarefa.arquivada) criarTarefa(tarefa).appendTo($("#listaArquivadas"));
+        else criarTarefa(tarefa).appendTo($("#listaFazer"));
+    });
 }
+
+// FIM - 1° alteração ----------------------------------------------------------------------------------------------------
+
 
 function criarTarefa(tarefa) {
     let textoCabecalho = "";
