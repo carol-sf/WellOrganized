@@ -6,10 +6,10 @@ const btnAddTarefa = $("#botao-add-tarefa");
 const entrada = $("#entrada");
 let corSelecionada = "";
 
-$(document).ready(function() {
+$(document).ready(function () {
     //O codigo abaixo me permite exibir minhas tarefas no localstorage assim que minha tela é inicializada! - AKarolynna
     obterTarefasDoLocalStorage();
-    });
+});
 
 function adicionandoTarefas() {
     btnAddTarefa.toggleClass("esconde");
@@ -64,13 +64,13 @@ function resetFormulario() {
 function obterTarefasDoLocalStorage() {
     const tarefasString = localStorage.getItem('tarefas');
     if (tarefasString) {
-      const tarefas = JSON.parse(tarefasString);
-      for (const tarefa of tarefas) {
-        const cartaoTarefa = criarTarefa(tarefa);
-        cartaoTarefa.appendTo($("#listaFazer"));
-      }
+        const tarefas = JSON.parse(tarefasString);
+        for (const tarefa of tarefas) {
+            const cartaoTarefa = criarTarefa(tarefa);
+            cartaoTarefa.appendTo($("#listaFazer"));
+        }
     }
-  }
+}
 
 function criarTarefa(tarefa) {
     let textoCabecalho = "";
@@ -86,37 +86,89 @@ function criarTarefa(tarefa) {
 
     let cartao = $("<li></li>").addClass(`cartao ${tarefa.cor} ${statusConcluida} ${statusArquivada}`);
     let divCabecalho = $("<div></div>").addClass("cartao-cabecalho").appendTo(cartao);
-    $("<div></div>").addClass("check").appendTo(divCabecalho);
+    $("<div></div>").addClass("check").appendTo(divCabecalho).click(concluirTarefa); // Tive que botar o listener do evento aqui, pois antes dessa função ele não existia
     $(`<span>${textoCabecalho}</span>`).appendTo(divCabecalho);
     let divCorpo = $("<div></div>").addClass("cartao-corpo").appendTo(cartao);
     $(`<p>${tarefa.desc}</p>`).appendTo(divCorpo);
-    $("<div></div>").addClass("cartao-rodape").appendTo(cartao);
+    $("<div></div>").addClass("cartao-rodape").appendTo(cartao).click(removerTarefa); // Mesma coisa do caso de cima
 
     return cartao;
 }
 
 function adicionarTarefa() {
     if (validar()) {
-      const tarefa = { desc: entrada.val(), cor: corSelecionada, concluida: false, arquivada: false };
-  
-      // Obter tarefas existentes do localStorage
-      const tarefasString = localStorage.getItem('tarefas'); //obtém o valor armazenado no localStorage com a chave 'tarefa'. 
-      let tarefas = [];
+        const tarefa = { desc: entrada.val(), cor: corSelecionada, concluida: false, arquivada: false };
 
-      if (tarefasString) {
-        tarefas = JSON.parse(tarefasString);
-      }
-  
-      // Adicionar a nova tarefa ao array
-      tarefas.push(tarefa);
-  
-      // Salvar o array atualizado no localStorage
-      localStorage.setItem('tarefas', JSON.stringify(tarefas));
-  
-      // Criar e adicionar o cartão da nova tarefa na tela
-      const cartaoTarefa = criarTarefa(tarefa);
-      cartaoTarefa.appendTo($("#listaFazer"));
-  
-      resetFormulario();
+        // Obter tarefas existentes do localStorage
+        const tarefasString = localStorage.getItem('tarefas'); //obtém o valor armazenado no localStorage com a chave 'tarefa'. 
+        let tarefas = [];
+
+        if (tarefasString) {
+            tarefas = JSON.parse(tarefasString);
+        }
+
+        // Adicionar a nova tarefa ao array
+        tarefas.push(tarefa);
+
+        // Salvar o array atualizado no localStorage
+        localStorage.setItem('tarefas', JSON.stringify(tarefas));
+
+        // Criar e adicionar o cartão da nova tarefa na tela
+        const cartaoTarefa = criarTarefa(tarefa);
+        cartaoTarefa.appendTo($("#listaFazer"));
+
+        resetFormulario();
     }
-  }
+}
+
+
+
+
+// MECHENDO NO LOCAL STORAGE ---------------------------------------------------------------------------------------------
+// Eu vou precisar pegar e atualizar minha lista de tarefas várias vezes ao longo do código e não apenas no "adicionarTarefa()", então botei essas funcionalidades em funções, igual o Lenadro
+
+// Obs: aqui ele já converte de string pra JSON, pois isso SEMPRE precisará ser feito
+function getTarefasLocalStorage() {
+    return JSON.parse(localStorage.getItem('tarefas')) || [];
+}
+
+// Obs: aqui ele já converte de JSON pra string, pois isso SEMPRE precisará ser feito
+function setTarefasLocalStorage(tarefas) {
+    localStorage.setItem("tarefas", JSON.stringify(tarefas));
+}
+// -----------------------------------------------------------------------------------------------------------------------
+
+
+function concluirTarefa(evt) {
+    // pegando o cartão clicado
+    const divCabecalho = $(evt.target).parent();
+    const divCartao = divCabecalho.parent();
+
+    // se o cartao nao tiver a classe arquivada eu continuo (pois ele ainda está no index e pode ser concluido e "desconcluido")
+    // se não eu nao faço nada (pois ele está na página de arquivadas e lá o botão de concluir não funciona)
+    if(!divCartao.attr("class").includes("arquivada")) {
+        const statusConcluida = divCabecalho.children().eq(1);    
+        const descAtual = divCartao.children().eq(1).text();
+        const tarefas = getTarefasLocalStorage();
+
+        // achando no local storage o indice da tarefa que tem a mesma descrição do cartão que eu cliquei p poder mudar o campo "concluida"
+        const indice = tarefas.findIndex((tarefa) =>
+            tarefa.desc === descAtual
+        );
+        
+        // mudando o texto do cabeçalho (o que tá do lado do Check) pra "concluida" ou "não concluida"
+        // e mudando o campo "concluida" do local storage pra "true" ou "false", pra continuar com a alteração quando eu atualizo a página    
+        if(divCartao.attr("class").includes("concluida")) {
+            statusConcluida.text("Não concluída");
+            tarefas[indice].concluida = false;
+        } else {
+            statusConcluida.text("Concluída");
+            tarefas[indice].concluida = true;
+        }
+        setTarefasLocalStorage(tarefas);
+
+        // botando a classe concluida no cartao (ou tirando, caso ela já esteja lá)
+        // assim, quando eu apertar o check ele vai deixar o cabeçalho verdinho, deixar a descrição da tarefa riscada e habilitar o botão de arquivar lá em baixo (ou voltar como tava antes, sem essas alterações)
+        divCartao.toggleClass("concluida");
+    }
+}
