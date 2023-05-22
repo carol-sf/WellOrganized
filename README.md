@@ -1,30 +1,3 @@
-# Well Organized - A fazer:
+# Well Organized
 
-## Criar a interface
-- [x] páginas: index e arquivadas
-- [x] header           -> logo e menu
-- [x] seção cabeçalho  -> botao adicionar ou formulário (index), título (arquivadas)
-- [x] seção tarefas    -> cartões de tarefas
-
-### Cartões
-- [x] cores
-- [x] concluida
-- [x] arquivada
-
-  
-## Funções no JS
-### Preparação para adição de tarefas
-- [x] exibirFormulario          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> evento: clicar no botão de mais
-- [x] selecionarCor             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> evento: clicar no botão da cor
-
-### Adicionar item no DOM
-- [x] adicionarTarefa             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> evento: clicar no botão adicionar do formulário
-- [x] validar                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> chamado no "adicionarTarefa"
-- [x] tarefaJaExiste              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> chamado no "validar"
-- [x] criarTarefa                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -> chamado no "adicionarTarefa"
-- [x] limparInpDescricao        &nbsp; &nbsp; -> chamado no "adicionarTarefa"
-
-### Adicionar item no Local Storage
-- [x] getTarefasLocalStorage
-- [x] setTarefasLocalStorage
-- [ ] modificar o "adicionarTarefa" para armazenar os itens no local storage também
+Um site para a organização de tarefas no formato de Post Its.
