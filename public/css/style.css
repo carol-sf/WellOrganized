@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Open+Sans:wght@600&family=Roboto:wght@400;500&display=swap');
 
-/*
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Open Sans', sans-serif;
-    font-family: 'Roboto', sans-serif;
-*/
-
 * {
     margin: 0;
     padding: 0;
@@ -32,12 +26,13 @@ header {
 
 nav {
     display: flex;
-    /* width: 100%; */
     padding: 45px 50px 0 45px; 
 }
+
 nav img{
    margin-top:-7px;
 }
+
 nav ul {
     padding: 10px 30px;
     margin-left: 121px;
@@ -54,6 +49,20 @@ nav ul li a {
 
 #cabecalho {
     height: 100px;
+}
+
+#cabecalho .subtituloPagina{
+    height: 55px;
+    display: flex;
+    align-items: center;
+}
+
+#cabecalho .subtituloPagina p{
+    padding: 45px 50px 30px 46px;
+    font-family: 'Montserrat', sans-serif;
+    font-size:24px;
+    font-weight: 400;
+    margin-top:20px;
 }
 
 #cabecalho .botao-add-tarefa {
@@ -81,10 +90,6 @@ nav ul li a {
     width: 50px;
 }
 
-.esconde {
-    display: none;
-}
-
 .adicaoTarefas {
     height: 100px;
     padding: 5px 50px 0 45px;
@@ -101,7 +106,6 @@ nav ul li a {
     margin-left: 5px;
 }
 
-
 .adicaoTarefas input {
     width: 490px;
     height: 40px;
@@ -109,10 +113,6 @@ nav ul li a {
     border-radius: 7px;
     margin-right: 15px;
     padding: 12px 20px; 
-}
-
-.hide {
-    display: flex;
 }
 
 .adicaoTarefas .btn-add {
@@ -135,13 +135,11 @@ nav ul li a {
     cursor: pointer; 
 }
 
-/* OBS: para os quadradinhos não ficarem esprimidos */
 .divCor {
     display: flex;
 }
 
 .tarefas{
-    /* margin-top: 40px; */
     padding: 45px 50px 30px 45px; 
 }
 
@@ -223,6 +221,14 @@ nav ul li a {
     color: #727272;
 }
 
+.esconde {
+    display: none;
+}
+
+.hide {
+    display: flex;
+}
+
 li.concluida .cartao-cabecalho {
     background-color: #b8ff99;
     color: #2b5a07;
@@ -251,18 +257,4 @@ li.arquivada .check {
 
 .cor-selecionada {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-}
-
-.subtituloPagina{
-    height: 55px;
-    display: flex;
-    align-items: center;
-}
-.subtituloPagina p{
-    padding: 45px 50px 30px 46px;
-    font-family: 'Montserrat', sans-serif;
-    font-size:24px;
-    font-weight: 400;
-    margin-top:20px;
-   
 }
