@@ -151,6 +151,7 @@ nav ul li a {
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     margin: 10px;
+    
 }
 
 .check {
@@ -171,9 +172,16 @@ nav ul li a {
     color: #e42c28;
 }
 
+.cartao-corpo {
+    height: 145px;
+    overflow: auto;
+}
+
 .cartao-corpo p {
     padding: 8px;
     margin: 0;
+    
+    overflow-wrap: break-word;
 }
 
 .cartao-rodape {
